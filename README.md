@@ -1,6 +1,6 @@
 # MOG-BLEJAMMER
 
-![GitHub stars](https://img.shields.io/github/stars/MOG-Developing/MOG-BLEJAMMER?style=social) ![GitHub forks](https://img.shields.io/github/forks/MOG-Developing/MOG-BLEJAMMER?style=social) ![GitHub license](https://img.shields.io/github/license/MOG-Developing/MOG-BLEJAMMER) ![GitHub issues](https://img.shields.io/github/issues/MOG-Developing/MOG-BLEJAMMER)
+[![Stars](https://img.shields.io/github/stars/MOG-Developing/MOG-BLEJAMMER?style=social)](https://github.com/MOG-Developing/MOG-BLEJAMMER/stargazers) ![GitHub forks](https://img.shields.io/github/forks/MOG-Developing/MOG-BLEJAMMER?style=social) ![GitHub license](https://img.shields.io/github/license/MOG-Developing/MOG-BLEJAMMER) ![GitHub issues](https://img.shields.io/github/issues/MOG-Developing/MOG-BLEJAMMER)
 
 ## WARNING: Using jammers is illegal and you can get in trouble.
 
