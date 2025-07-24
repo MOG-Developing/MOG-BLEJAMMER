@@ -16,7 +16,7 @@
 
 ## PINOUT
 
-| NRF24L01 Pin | ESP32 Pin |
+| NRF24L01 Pins | ESP32 Pins |
 |--------------|-----------|
 | VCC          | 3.3V      |
 | GND          | GND       |
