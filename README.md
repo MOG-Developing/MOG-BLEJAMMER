@@ -31,6 +31,7 @@
 - Download ArduinoIDE
 - Go to Tools>Board>BoardManager and download esp32 by Espressif Systems. Go to File>Preferences>Additional Board Manager URLs and paste ``https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json``
 - Go to boards and select "ESP32 Dev Module".
+- Go to library manager and download "RF24" by TMRh20
 - Open the .ino file in ArduinoIDE 
 - Click the upload button and hold BOOT button.
 
