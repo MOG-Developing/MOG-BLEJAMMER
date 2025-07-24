@@ -16,14 +16,12 @@
 
 ## PINOUT
 
-```
-NRF24L01  ->  ESP32
-
-VCC       ->  3.3V
-GND       ->  GND
-CSN       ->  GPIO5
-CE        ->  GPIO4
-SCK       ->  GPIO18
-MOSI      ->  GPIO23
-MISO      ->  GPIO19
-```
+| NRF24L01 Pin | ESP32 Pin |
+|--------------|-----------|
+| VCC          | 3.3V      |
+| GND          | GND       |
+| CSN          | GPIO5     |
+| CE           | GPIO4     |
+| SCK          | GPIO18    |
+| MOSI         | GPIO23    |
+| MISO         | GPIO19    |
