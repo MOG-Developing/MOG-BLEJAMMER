@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOG-BLEJAMMER PROJECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes liquidFlow {
+            0% { transform: translateX(-100%) skewX(-15deg); }
+            100% { transform: translateX(100%) skewX(-15deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1e1e2e, #121218);
+            color: rgba(255, 255, 255, 0.92);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1s cubic-bezier(0.19, 1, 0.22, 1);
+            overflow-x: hidden;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto;
+            perspective: 1000px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 40px;
+            transform-style: preserve-3d;
+        }
+        
+        h1 {
+            font-weight: 600;
+            margin: 0;
+            background: linear-gradient(90deg, #7f7fd5, #86a8e7, #91eae4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: float 8s ease-in-out infinite, pulse 6s ease infinite;
+            font-size: 2.5rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .releases-btn {
+            padding: 14px 28px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08));
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.25);
+            position: relative;
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+        
+        .releases-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: 0.5s;
+        }
+        
+        .releases-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 16px 50px rgba(31, 38, 135, 0.35);
+        }
+        
+        .releases-btn:hover::before {
+            left: 100%;
+        }
+        
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            animation: liquidFlow 8s linear infinite;
+        }
+        
+        .glass-panel:hover {
+            transform: translateY(-5px) rotateX(1deg) rotateY(1deg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .readme-content {
+            white-space: pre-wrap;
+            overflow-x: auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .credits {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            animation: fadeIn 1.5s ease-out;
+            font-weight: 300;
+        }
+        
+        .refresh-indicator {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            animation: fadeIn 0.6s ease-out;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .refresh-indicator:hover {
+            transform: translateY(-3px);
+        }
+        
+        .markdown-body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            word-wrap: break-word;
+            animation: fadeIn 1.2s ease-out;
+        }
+        
+        .markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+            margin-top: 28px;
+            margin-bottom: 18px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .markdown-body h1 {
+            padding-bottom: 0.3em;
+            font-size: 2.2em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: pulse 8s infinite;
+        }
+        
+        .markdown-body h2 {
+            padding-bottom: 0.3em;
+            font-size: 1.7em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .markdown-body code {
+            font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+            background-color: rgba(110, 118, 129, 0.3);
+            border-radius: 6px;
+            padding: 0.2em 0.4em;
+            font-size: 85%;
+        }
+        
+        .markdown-body pre {
+            background-color: rgba(22, 27, 34, 0.5);
+            border-radius: 8px;
+            padding: 18px;
+            overflow: auto;
+            line-height: 1.5;
+            border-left: 3px solid #7f7fd5;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .markdown-body pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+        }
+        
+        .markdown-body a {
+            color: #7fbbff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .markdown-body a:hover {
+            color: #a6d1ff;
+        }
+        
+        .markdown-body a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #7fbbff, transparent);
+            transition: width 0.3s ease;
+        }
+        
+        .markdown-body a:hover::after {
+            width: 100%;
+        }
+        
+        .markdown-body img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .markdown-body img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .markdown-body blockquote {
+            border-left: 4px solid rgba(127, 127, 213, 0.5);
+            padding-left: 20px;
+            margin-left: 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .liquid-shape {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(127, 127, 213, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            animation: float 12s ease-in-out infinite alternate;
+            z-index: -1;
+        }
+        
+        .liquid-shape:nth-child(1) {
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+        
+        .liquid-shape:nth-child(2) {
+            bottom: -150px;
+            right: -100px;
+            animation-delay: 2s;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="liquid-shape"></div>
+    <div class="liquid-shape"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>MOG-BLEJAMMER</h1>
+            <a href="https://github.com/MOG-Developing/MOG-BLEJAMMER/releases" class="releases-btn">View Releases</a>
+        </div>
+        
+        <div class="glass-panel">
+            <div id="readme" class="markdown-body"></div>
+        </div>
+        
+        <div class="credits">Project by MOG-Developing</div>
+    </div>
+    
+    <div id="refreshIndicator" class="refresh-indicator" style="display: none;">🔄 Refreshing content...</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchReadme();
+            setInterval(fetchReadme, 120000);
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) {
+                    e.preventDefault();
+                }
+                if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))) {
+                    e.preventDefault();
+                }
+            });
+            
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+        });
+        
+        function fetchReadme() {
+            const indicator = document.getElementById('refreshIndicator');
+            indicator.style.display = 'block';
+            indicator.style.animation = 'none';
+            void indicator.offsetWidth;
+            indicator.style.animation = 'fadeIn 0.6s ease-out';
+            
+            fetch('https://raw.githubusercontent.com/MOG-Developing/MOG-BLEJAMMER/main/README.md')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(text => {
+                    document.getElementById('readme').innerHTML = marked.parse(text);
+                    setTimeout(() => {
+                        indicator.style.opacity = '0';
+                        setTimeout(() => {
+                            indicator.style.display = 'none';
+                            indicator.style.opacity = '1';
+                        }, 300);
+                    }, 1500);
+                })
+                .catch(error => {
+                    console.error('Error fetching README:', error);
+                    document.getElementById('readme').innerHTML = '<p>Error loading README. Please try again later.</p>';
+                    indicator.style.display = 'none';
+                });
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+</html>
