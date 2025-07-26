@@ -40,5 +40,3 @@
 - Click the upload button and hold BOOT button.
 
 *You can also flash it with the .bin file*
-
-WEB FLASHER COMING SOON!
